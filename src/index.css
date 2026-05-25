@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg text-text-primary font-sans antialiased;
+  }
+  body {
+    @apply min-h-screen relative;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(255, 45, 45, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.03) 0%, transparent 40%),
+      #0a0a0c;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+  #root {
+    position: relative;
+    z-index: 2;
+  }
+  ::selection {
+    @apply bg-accent text-white;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-none;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-border-bright;
+  }
+}
+
+@layer components {
+  .stat-display {
+    @apply font-display tabular-nums tracking-tight;
+  }
+  .mono {
+    @apply font-mono tabular-nums;
+  }
+  .card {
+    @apply bg-bg-surface border border-border;
+  }
+  .card-hover {
+    @apply transition-colors hover:border-border-bright;
+  }
+  .accent-line {
+    @apply relative;
+  }
+  .accent-line::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-1 bg-accent;
+  }
+  .stagger-fade > * {
+    animation: fadeUp 0.5s ease-out forwards;
+    opacity: 0;
+  }
+  .stagger-fade > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-fade > *:nth-child(2) { animation-delay: 0.10s; }
+  .stagger-fade > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger-fade > *:nth-child(4) { animation-delay: 0.20s; }
+  .stagger-fade > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger-fade > *:nth-child(6) { animation-delay: 0.30s; }
+  .stagger-fade > *:nth-child(7) { animation-delay: 0.35s; }
+  .stagger-fade > *:nth-child(8) { animation-delay: 0.40s; }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
